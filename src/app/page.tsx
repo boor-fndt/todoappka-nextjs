@@ -47,6 +47,7 @@ async function toggleTodo(id: string, complete: boolean, content: string, email?
     }
 }
 
+
 export default async function Home() {
     const todos = await getTodos()
 
