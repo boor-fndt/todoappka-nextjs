@@ -1,9 +1,8 @@
-import { TodoItem } from "@/components/TodoItem"
-import { prisma } from "@/db"
+import {TodoItem} from "@/components/TodoItem"
+import {prisma} from "@/db"
 import Link from "next/link"
-import { getServerSession } from "next-auth";
-import { OPTIONS } from "@/app/api/auth/[...nextauth]/route";
-import { Message, SMTPClient } from "emailjs";
+import {getServerSession} from "next-auth";
+import {OPTIONS} from "@/authOptions";
 
 async function getTodos() {
     const session = await getServerSession(OPTIONS);
@@ -18,7 +17,7 @@ async function getTodos() {
 async function toggleTodo(id: string, complete: boolean, content: string, email?: string) {
     "use server"
 
-    await prisma.todo.update({ where: { id }, data: { complete } })
+    await prisma.todo.update({where: {id}, data: {complete}})
 
     if (complete) {
         try {
