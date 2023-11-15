@@ -2,7 +2,7 @@ import { prisma } from "@/db"
 import { redirect } from "next/navigation"
 import Link from "next/link"
 import { getServerSession } from "next-auth";
-import { OPTIONS } from "@/app/api/auth/[...nextauth]/route";
+import { OPTIONS } from "@/authOptions";
 async function createTodo(data: FormData) {
   "use server"
 
