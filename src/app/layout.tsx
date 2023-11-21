@@ -20,7 +20,7 @@ export default function RootLayout({
             className={`${inter.className} bg-slate-800 text-slate-100 container mx-auto p-4`}
         >
         <Providers>
-            <h1 className="text-4xl mb-3">TODO APPKA - aws ec2</h1>
+            <h1 className="text-4xl mb-3">TODO APPKA</h1>
             <Header/>
             {children}
         </Providers>
