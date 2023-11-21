@@ -10,13 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Deploy to EC2
-        run: ssh ubuntu@ec2-51-20-98-17.eu-north-1.compute.amazonaws.com 'bash -s' < deploy.sh
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            #!/bin/bash
+            cd /home/ubuntu/todoappka-nextjs
+            git pull origin main
+            npm install
+            pm2 stop all
+            pm2 start npm --name nextjs-app -- run start -- -p 3000
